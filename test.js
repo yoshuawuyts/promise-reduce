@@ -1,6 +1,6 @@
 const test    = require('tape')
 const reduce     = require('./')
-const Promise = require('native-or-bluebird')
+const Promise = require('any-promise')
 
 test('promise-reduce should assert input types', function(t) {
   t.plan(1)

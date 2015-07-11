@@ -1,5 +1,5 @@
 const assert  = require('assert')
-const Promise = require('native-or-bluebird')
+const Promise = require('any-promise')
 
 module.exports = reduce
 
