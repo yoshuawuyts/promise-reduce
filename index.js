@@ -11,6 +11,10 @@ function reduce(fn, start) {
   assert.equal(typeof fn, 'function')
   return function(val) {
     val = Array.isArray(val) ? val : [val]
-    return Promise.resolve(val.reduce(fn, start))
+    return val.reduce(function (promise, curr) {
+      return promise.then(function (prev) {
+        return fn(prev, curr);
+      });
+    }, Promise.resolve(start));
   }
 }
