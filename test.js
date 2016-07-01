@@ -7,7 +7,7 @@ test('promise-reduce should assert input types', function (t) {
   t.throws(reduce.bind(null, 123))
 })
 
-test('promise-reuduce should accept a single val', function (t) {
+test('promise-reduce should accept a single val', function (t) {
   t.plan(1)
 
   const res = Promise.resolve(2)
@@ -35,6 +35,30 @@ test('promise-reduce should reduce a fn', function (t) {
 
   function checkFn(val) {
     t.equal(6, val)
+  }
+})
+
+test('should pass reducer arguments to callback', function(t) {
+  const arrTest = [1, 2]
+
+  const res = Promise.resolve(arrTest)
+    .then(reduce(reduceFn, 0))
+    .then(checkFn)
+
+  function reduceFn(prev, next, index, arr) {
+    t.equal(4, arguments.length)
+    t.equal(arrTest, arr)
+
+    return new Promise(function (resolve) {
+      setTimeout(function () {
+        resolve(prev + next)
+      }, 1)
+    })
+  }
+
+  function checkFn(val) {
+    t.equal(3, val)
+    t.end()
   }
 })
 
