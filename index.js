@@ -11,8 +11,15 @@ function reduce(fn, start) {
   assert.equal(typeof fn, 'function')
   return function(val) {
     val = Array.isArray(val) ? val : [val]
+
+    const length = val.length;
+
     return val.reduce(function (promise, curr, index, arr) {
       return promise.then(function (prev) {
+        if (prev === undefined && length === 1) {
+          return curr;
+        }
+
         return fn(prev, curr, index, arr)
       })
     }, Promise.resolve(start))

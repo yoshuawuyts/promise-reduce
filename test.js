@@ -80,3 +80,22 @@ test('should not continue until last iteration has been resolved', function (t) 
     t.equal(6, val)
   }
 })
+
+test('should not call callback when initial value is undefined and iterable contains one item', function (t) {
+  t.plan(1)
+  const res = Promise.resolve([1])
+    .then(reduce(reduceFn, undefined))
+    .then(checkFn)
+
+  function reduceFn(prev, next) {
+    return new Promise(function (resolve) {
+      setTimeout(function () {
+        resolve(prev + next)
+      }, 1)
+    })
+  }
+
+  function checkFn(val) {
+    t.equal(1, val, 'should return the item in iterable')
+  }
+})
