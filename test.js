@@ -99,3 +99,22 @@ test('should not call callback when initial value is undefined and iterable cont
     t.equal(1, val, 'should return the item in iterable')
   }
 })
+
+test('should not call callback when iterable is empty', function (t) {
+  t.plan(1)
+  const res = Promise.resolve([])
+    .then(reduce(reduceFn, 10))
+    .then(checkFn)
+
+  function reduceFn(prev, next) {
+    return new Promise(function (resolve) {
+      setTimeout(function () {
+        resolve(prev + next)
+      }, 1)
+    })
+  }
+
+  function checkFn(val) {
+    t.equal(10, val, 'should return initial value')
+  }
+})

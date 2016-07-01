@@ -14,6 +14,10 @@ function reduce(fn, start) {
 
     const length = val.length;
 
+    if (length === 0) {
+      return Promise.resolve(start);
+    }
+
     return val.reduce(function (promise, curr, index, arr) {
       return promise.then(function (prev) {
         if (prev === undefined && length === 1) {
