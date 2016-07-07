@@ -1,6 +1,6 @@
 {
   "name": "promise-reduce",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Reduce an array and return a Promise",
   "main": "index.js",
   "scripts": {
