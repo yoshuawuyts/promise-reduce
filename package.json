@@ -29,7 +29,7 @@
     "README.md",
     "index.js"
   ],
-  "engines" : {
-    "node" : ">=4"
+  "engines": {
+    "node": ">=4"
   }
 }
