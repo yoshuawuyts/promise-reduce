@@ -1,5 +1,4 @@
 const assert  = require('assert')
-const Promise = require('any-promise')
 
 module.exports = reduce
 

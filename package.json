@@ -16,9 +16,6 @@
     "reduce"
   ],
   "license": "MIT",
-  "dependencies": {
-    "any-promise": "^0.1.0"
-  },
   "devDependencies": {
     "bluebird": "^2.8.2",
     "eslint": "^0.12.0",
@@ -31,5 +28,8 @@
     "LICENSE",
     "README.md",
     "index.js"
-  ]
+  ],
+  "engines" : {
+    "node" : ">=4"
+  }
 }
